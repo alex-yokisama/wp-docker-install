@@ -44,6 +44,3 @@ docker/db
 .vscode/
 mariadb/
 wordpress/wp-content/languages/
-
-docker-compose.yml
-docker/

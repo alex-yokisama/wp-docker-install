@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+    db-service:
+        container_name: db-service
+        environment:
+            - MYSQL_RANDOM_ROOT_PASSWORD=yes
+            - MYSQL_DATABASE=${WORDPRESS_DB_NAME}
+            - MYSQL_PASSWORD=${WORDPRESS_DB_PASSWORD}
+            - MYSQL_USER=${WORDPRESS_DB_USER}
+        image: mariadb
+        ports:
+            - '3307:3306'
+    wp-service:
+        build: .
+        command: bash -c 'install_wordpress && apache2-foreground'
+        container_name: wp-service
+        depends_on:
+            - db-service
+        env_file: ./.env
+        ports:
+            - '8080:8080'
+        user: www-data
+        volumes:
+            - ./wordpress:/var/www/html
+            - ./docker/install_wordpress.sh:/usr/local/bin/install_wordpress
+            - ./docker/plugins:/var/www/plugins
+            - ./docker/db:/var/www/db
