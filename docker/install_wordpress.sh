@@ -2,10 +2,6 @@
 
 set -e
 
-COLOR_BLUE="\033[1;94m"
-COLOR_RESET="\033[0m"
-CALLED_BY_PARENT="yessir"
-
 # Checking MYSQL is ready to be used.
 mysql_ready="nc -z ${WORDPRESS_DB_HOST} 3306"
 
