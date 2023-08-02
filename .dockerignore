@@ -1,0 +1,8 @@
+
+/.cache
+/.git
+/node_modules
+/admin
+/e2e
+/scripts
+/vendor/bin
